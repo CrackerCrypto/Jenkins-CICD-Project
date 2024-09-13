@@ -68,16 +68,16 @@ pipeline{
                     sh 'docker push ${DOCKER_HUB_REGISTRY}:${BUILD_NUMBER}'
                 }
             }
+            post {
+                always {
+                    // Logout from DockerHub after pushing the image
+                    sh 'docker logout'
+                }
+            }
         }
         stage('Trivy Image Scan'){
             steps{
                 sh 'trivy image ${DOCKER_HUB_REGISTRY}:${BUILD_NUMBER} > trivyimage.txt'
-            }
-        }
-        post {
-            always {
-                // Logout from DockerHub after pushing the image
-                sh 'docker logout'
             }
         }
     }
