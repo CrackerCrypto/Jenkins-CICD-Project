@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    table,
+    td {
+      border: 2px solid black;
+      text-align: center;
+    }
+    td {
+      padding: 20px;
+    }
+  </style>
+  <body>
+    <% if (locals.status) { %>
+    <table>
+      <thead>
+        <td>id</td>
+        <td>Full Name</td>
+        <td>Email</td>
+      </thead>
+      <tbody>
+        <td><%= payload._id %></td>
+        <td><%= payload.fullName %></td>
+        <td><%= payload.email %></td>
+      </tbody>
+    </table>
+    <a href="/logout">Logout</a>
+    <% } %>
+  </body>
+</html>

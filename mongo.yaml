@@ -1,0 +1,35 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db
+  mongo-express:
+    image: mongo-express
+    restart: always # fixes MongoNetworkError when mongodb is not ready when mongo-express starts
+    ports:
+      - 8080:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+  login-app:
+    image: cicd-pipeline-project:1.0
+    ports:
+      - "5000:5000"
+    restart: always
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_USERNAME=admin
+      - MONGO_PASSWORD=password
+      - MONGO_HOST=mongodb
+      - MONGO_URI=mongodb://admin:password@mongodb:27017/demo-app?authSource=admin
+volumes:
+  mongo-data:
+    driver: local

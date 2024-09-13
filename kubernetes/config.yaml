@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: node-app-config
+  namespace: my-app
+data:
+  database_url: mongodb://admin:password@mongo-service:27017/demo-app?authSource=admin
