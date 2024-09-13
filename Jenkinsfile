@@ -52,19 +52,32 @@ pipeline{
                 sh 'docker build -t ${DOCKER_HUB_REGISTRY}:${BUILD_NUMBER} .'
             }
         }
+        stage('Login to DockerHub'){
+            steps{
+                script {
+                    // Login to DockerHub using Jenkins credentials
+                    withCredentials([usernamePassword(credentialsId: "${DOCKER_HUB_CREDENTIALS}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                    }
+                }
+            }
+        }
         stage('Deploy Image'){
             steps{
                 script{
-                    def dockerImage = docker.image("${DOCKER_HUB_REGISTRY}:${BUILD_NUMBER}")
-                    docker.withRegistry("https://hub.docker.com/", DOCKER_HUB_CREDENTIALS){
-                        dockerImage.push()
-                    }
+                    sh 'docker push ${DOCKER_HUB_REGISTRY}:${BUILD_NUMBER}'
                 }
             }
         }
         stage('Trivy Image Scan'){
             steps{
                 sh 'trivy image ${DOCKER_HUB_REGISTRY}:${BUILD_NUMBER} > trivyimage.txt'
+            }
+        }
+        post {
+            always {
+                // Logout from DockerHub after pushing the image
+                sh 'docker logout'
             }
         }
     }
