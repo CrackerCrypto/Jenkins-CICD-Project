@@ -15,8 +15,9 @@ metadata:
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
-metadta:
+metadata:
   name: mongo-pvc
+  namespace: my-app
   labels:
     app: mongo-pvc
   spec:
