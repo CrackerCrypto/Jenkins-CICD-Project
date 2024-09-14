@@ -19,9 +19,9 @@ metadata:
   name: mongo-pvc
   labels:
     app: mongo-pvc
-  spec:
-    accessModes:
-      - ReadWriteOnce
-    resources:
-      request:
-        storage: 1Gi
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
