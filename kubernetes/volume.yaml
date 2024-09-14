@@ -13,7 +13,7 @@ metadata:
     hostPath:
       path: "/data/mogno"
 ---
-apiVersion:
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadta:
   name: mongo-pvc
