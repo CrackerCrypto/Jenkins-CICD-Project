@@ -5,13 +5,13 @@ metadata:
   namespace: my-app
   labels:
     app: mongo-pv
-  spec:
-    capacity:
-      storage: 1Gi
-    accessModes:
-      - ReadWriteOnce
-    hostPath:
-      path: "/data/mogno"
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/mongo"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
