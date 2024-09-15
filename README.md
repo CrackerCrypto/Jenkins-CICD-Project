@@ -2,16 +2,18 @@
 
 ## Description
 
-This is a simple Node.js-based application that provides user authentication functionalities such as login and sign-up. The application uses MongoDB for data storage, and it is containerized with Docker for easy deployment. The app is deployed in a local Kubernetes cluster using Minikube, providing a scalable and cloud-native environment.
+This project focuses on building a CICD pipeline using Jenkins. I have used this project to automate the containerization of a node js application. Later I have deployed the application using Argo CD into a K8s cluster(minikube). Also, to setup the Jenkins server I have used Terraform and AWS CLI to built the infrastructure much more efficiently.
 
-## Features
+The project covers the core concepts of DevOps like CICD pipeline, Infrastructure as Code, Containerization etc.
+
+P.S: This project is an extention of my Docker-And-Kubernetes Project. The difference between the project is I have also implemeted `PersistentVolume` and `PersistentVolumeClaim` that will be used to manage persistent storage in stateful applications.
+
+## Features of the application
 
 - User registration and login functionality
 - Secure password handling and storage with encryption
 - Session management
 - MongoDB integration for user data storage
-- Containerization using Docker for consistent deployment
-- Local deployment on a Kubernetes cluster with Minikube
 
 ## Technologies Used
 
@@ -20,14 +22,21 @@ This is a simple Node.js-based application that provides user authentication fun
 - **Containerization**: Docker
 - **Orchestration**: Kubernetes (Minikube)
 - **Container Registry**: DockerHub, AWS Elastic Container Registry
+- **CICD Pipeline**: Jenkins
+- **Infrastructure as Code**: Terraform
+- **GitOps**: Argo CD
 - **Others**: YAML (for Kubernetes configurations)
 
 ## Prerequisites
 
 - Docker
 - Kubernetes (Minikube)
+- Terraform
+- Jenkins
+- Argo CD
 - Node.js
 - MongoDB
+- AWS CLI
 
 ## Installation
 
